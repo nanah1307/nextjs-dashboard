@@ -4,6 +4,15 @@ import { invoices, customers, revenue, users } from '../lib/placeholder-data';
 
 const sql = postgres(process.env.POSTGRES_URL!, { ssl: 'require' });
 
+// async function dropTables() {
+//   await sql`DROP TABLE IF EXISTS users`;
+//   await sql`DROP TABLE IF EXISTS customers`;
+//   await sql`DROP TABLE IF EXISTS invoices`;
+//   await sql`DROP TABLE IF EXISTS revenue`;
+//   await sql`DROP TABLE IF EXISTS cart`;
+//   await sql`DROP TABLE IF EXISTS item`;
+//   await sql`DROP TABLE IF EXISTS playing_with_neon`;
+// }
 async function seedUsers() {
   await sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
   await sql`
@@ -108,6 +117,7 @@ export async function GET() {
       seedCustomers(),
       seedInvoices(),
       seedRevenue(),
+      // dropTables()
     ]);
 
     return Response.json({ message: 'Database seeded successfully' });
