@@ -92,7 +92,7 @@ const UpdateInvoice = FormSchema.omit({ id: true, date: true });
       WHERE id = ${id}
     `;
   } catch (error) {
-    return { message: 'Database Error: Failed to Update Invoice.' };
+    return { message: `error ${error} Database Error: Failed to Update Invoice.` };
   }
  
   revalidatePath('/dashboard/invoices');
